@@ -11,7 +11,7 @@ require "csv"
 # doesn't currently check for if titles are unique against each other
 
 CSV.open("db/media_seeds.csv", "w", :write_headers => true,
-                                    :headers => ["category", "title", "creator", "publication_year", "description"]) do |csv|
+                                    :headers => ["category", "title", "creator", "pub_year", "description"]) do |csv|
   25.times do
     category = %w(album book).sample
     title = Faker::Coffee.blend_name
