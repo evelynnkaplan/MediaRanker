@@ -1,0 +1,5 @@
+<%= form_with model: @work do |f| %>
+  <%= f.label :category %>
+  <%= f.select(:category, @categories) %>
+<% end %>
+
