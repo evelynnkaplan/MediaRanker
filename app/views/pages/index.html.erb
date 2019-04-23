@@ -1,0 +1,36 @@
+
+<% highlight = @works.sample %>
+<h2>Media Spotlight: <%= highlight.title %> by <%= highlight.creator %></h2>
+
+<section>
+  <h3> Top Movies </h3>
+</section>
+
+<% top_movies_list = Work.top_movies %>
+<ul>
+<% top_movies_list.each do |movie| %>
+  <li><%= movie.title %> by <%= movie.creator %></li>
+<% end %>
+</ul>
+
+<section>
+  <h3> Top Books </h3>
+</section>
+
+<% top_books_list = Work.top_books %>
+<ul>
+<% top_books_list.each do |book| %>
+  <li><%= book.title %> by <%= book.creator %></li>
+<% end %>
+</ul>
+
+<section>
+  <h3> Top Albums </h3>
+</section>
+
+<% top_albums_list = Work.top_albums %>
+<ul>
+<% top_albums_list.each do |album| %>
+  <li><%= album.title %> by <%= album.creator %></li>
+<% end %>
+</ul>
