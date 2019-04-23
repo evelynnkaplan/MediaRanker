@@ -1,5 +1,4 @@
 class WorksController < ApplicationController
-  
   def index
     @movies = Work.where(category: "movie")
 
@@ -17,4 +16,8 @@ class WorksController < ApplicationController
     end
   end
 
+  def new
+    @work = Work.new
+    @categories = ["album", "book", "movie"]
+  end
 end
