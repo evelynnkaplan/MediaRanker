@@ -3,6 +3,6 @@
 <p>Published: <%= @work.pub_year %></p>
 <p><%= @work.description %></p>
 
-<%= button_to "Back to Media Ranks", works_path, method: "get" %>
+<%= button_to "Back to Media Ranks", root_path, method: "get" %>
 <%= button_to "Edit #{@work.title}", edit_work_path(@work.id), method: "get" %>
 <%= button_to "Delete #{@work.title}", work_path(@work.id), method: "delete" %>
