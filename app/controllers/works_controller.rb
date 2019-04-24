@@ -20,4 +20,20 @@ class WorksController < ApplicationController
     @work = Work.new
     @categories = ["album", "book", "movie"]
   end
+
+  def create
+    work_params = {
+      category: params[:work][:category],
+      title: params[:work][:title],
+      creator: params[:work][:creator],
+      pub_year: params[:work][:pub_year],
+      description: params[:work][:description]
+    }
+
+    work = Work.new(work_params)
+
+    work.save
+
+    redirect_to works_path
+  end
 end
