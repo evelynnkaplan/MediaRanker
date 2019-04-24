@@ -41,4 +41,19 @@ class WorksController < ApplicationController
     @work = Work.find_by(id: params[:id])
     @categories = ["album", "book", "movie"]
   end
+
+  def update
+    work_params = {
+      category: params[:work][:category],
+      title: params[:work][:title],
+      creator: params[:work][:creator],
+      pub_year: params[:work][:pub_year],
+      description: params[:work][:description],
+    }
+
+    @work = Work.find_by(id: params[:id])
+    @work.update(work_params)
+
+    redirect_to work_path(@work.id)
+  end
 end
