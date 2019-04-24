@@ -1,6 +1,6 @@
 
 <% highlight = @works.sample %>
-<h2>Media Spotlight: <%= highlight.title %> by <%= highlight.creator %></h2>
+<h2>Media Spotlight: <%= link_to "#{highlight.title}", work_path(highlight.id) %> by <%= highlight.creator %></h2>
 
 <section>
   <h3> Top Movies </h3>
@@ -9,7 +9,7 @@
 <% top_movies_list = Work.top_movies %>
 <ul>
 <% top_movies_list.each do |movie| %>
-  <li><%= movie.title %> by <%= movie.creator %></li>
+  <li><%= link_to "#{movie.title}", work_path(movie.id) %> by <%= movie.creator %></li>
 <% end %>
 </ul>
 
@@ -20,7 +20,7 @@
 <% top_books_list = Work.top_books %>
 <ul>
 <% top_books_list.each do |book| %>
-  <li><%= book.title %> by <%= book.creator %></li>
+  <li><%= link_to "#{book.title}", work_path(book.id) %> by <%= book.creator %></li>
 <% end %>
 </ul>
 
@@ -31,6 +31,6 @@
 <% top_albums_list = Work.top_albums %>
 <ul>
 <% top_albums_list.each do |album| %>
-  <li><%= album.title %> by <%= album.creator %></li>
+  <li><%= link_to "#{album.title}", work_path(album.id) %> by <%= album.creator %></li>
 <% end %>
 </ul>
