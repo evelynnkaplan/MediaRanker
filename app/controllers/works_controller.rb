@@ -27,7 +27,7 @@ class WorksController < ApplicationController
       title: params[:work][:title],
       creator: params[:work][:creator],
       pub_year: params[:work][:pub_year],
-      description: params[:work][:description]
+      description: params[:work][:description],
     }
 
     work = Work.new(work_params)
@@ -35,5 +35,10 @@ class WorksController < ApplicationController
     work.save
 
     redirect_to works_path
+  end
+
+  def edit
+    @work = Work.find_by(id: params[:id])
+    @categories = ["album", "book", "movie"]
   end
 end

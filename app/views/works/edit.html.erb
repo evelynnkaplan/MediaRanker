@@ -1,0 +1,5 @@
+<h3>Edit <%= @work.title %></h3>
+
+<section>
+  <%= render partial: "form", locals: { action_name: "Submit Edits", url_name: work_path(@work.id), method_name: "patch" } %>
+</section>
