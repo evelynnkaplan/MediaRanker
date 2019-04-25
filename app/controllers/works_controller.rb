@@ -1,4 +1,6 @@
 class WorksController < ApplicationController
+  before_action :find_work, only: [:show, :edit, :update, :destroy]
+
   def index
     @movies = Work.where(category: "movie")
 
@@ -8,8 +10,6 @@ class WorksController < ApplicationController
   end
 
   def show
-    @work = Work.find_by(id: params[:id])
-
     if !@work
       flash[:error] = "No work with that ID found."
       redirect_to works_path
@@ -30,20 +30,16 @@ class WorksController < ApplicationController
   end
 
   def edit
-    @work = Work.find_by(id: params[:id])
     @categories = ["album", "book", "movie"]
   end
 
   def update
-    @work = Work.find_by(id: params[:id])
     @work.update(work_params)
 
     redirect_to work_path(@work.id)
   end
 
   def destroy
-    @work = Work.find_by(id: params[:id])
-
     @work.destroy
 
     redirect_to works_path
@@ -53,5 +49,9 @@ class WorksController < ApplicationController
 
   def work_params
     return params.require(:work).permit(:category, :title, :creator, :pub_year, :description)
+  end
+
+  def find_work
+    @work = Work.find_by(id: params[:id])
   end
 end
