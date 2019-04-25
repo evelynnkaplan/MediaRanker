@@ -22,14 +22,6 @@ class WorksController < ApplicationController
   end
 
   def create
-    work_params = {
-      category: params[:work][:category],
-      title: params[:work][:title],
-      creator: params[:work][:creator],
-      pub_year: params[:work][:pub_year],
-      description: params[:work][:description],
-    }
-
     work = Work.new(work_params)
 
     work.save
@@ -43,14 +35,6 @@ class WorksController < ApplicationController
   end
 
   def update
-    work_params = {
-      category: params[:work][:category],
-      title: params[:work][:title],
-      creator: params[:work][:creator],
-      pub_year: params[:work][:pub_year],
-      description: params[:work][:description],
-    }
-
     @work = Work.find_by(id: params[:id])
     @work.update(work_params)
 
@@ -63,5 +47,11 @@ class WorksController < ApplicationController
     @work.destroy
 
     redirect_to works_path
+  end
+
+  private
+
+  def work_params
+    return params.require(:work).permit(:category, :title, :creator, :pub_year, :description)
   end
 end
