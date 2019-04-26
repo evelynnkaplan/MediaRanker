@@ -1,5 +1,5 @@
 
-<% highlight = @works.sample %>
+<% highlight = Work.highlight %>
 <h2>Media Spotlight: <%= link_to "#{highlight.title}", work_path(highlight.id) %> by <%= highlight.creator %></h2>
 
 <% top_movies_list = Work.top_movies %>

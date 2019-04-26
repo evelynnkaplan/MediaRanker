@@ -3,6 +3,11 @@ class Work < ApplicationRecord
     return ["album", "book", "movie"]
   end
 
+  def self.highlight
+    works = Work.all 
+    return works.sample
+  end
+
   def self.top_movies
     top_movies_list = []
     all_movies = Work.where(category: "movie")
