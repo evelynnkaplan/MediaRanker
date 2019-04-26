@@ -18,7 +18,7 @@ class WorksController < ApplicationController
 
   def new
     @work = Work.new
-    @categories = ["album", "book", "movie"]
+    @categories = Work.categories
   end
 
   def create
@@ -30,16 +30,31 @@ class WorksController < ApplicationController
   end
 
   def edit
-    @categories = ["album", "book", "movie"]
+    if !@work
+      flash[:error] = "No work with that ID found."
+      redirect_to works_path
+    end
+
+    @categories = Work.categories
   end
 
   def update
+    if !@work
+      flash[:error] = "No work with that ID found."
+      redirect_to works_path
+    end
+
     @work.update(work_params)
 
     redirect_to work_path(@work.id)
   end
 
   def destroy
+    if !@work
+      flash[:error] = "No work with that ID found."
+      redirect_to works_path
+    end
+
     @work.destroy
 
     redirect_to works_path

@@ -1,4 +1,8 @@
 class Work < ApplicationRecord
+  def self.categories
+    return ["album", "book", "movie"]
+  end
+
   def self.top_movies
     top_movies_list = []
     all_movies = Work.where(category: "movie")
