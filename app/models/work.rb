@@ -1,4 +1,7 @@
 class Work < ApplicationRecord
+  has_many :votes
+  has_many :users, through: :votes
+
   def self.categories
     return ["album", "book", "movie"]
   end
