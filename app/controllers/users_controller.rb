@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    if !user
+    if !@user
       flash[:error] = "No user with that ID found."
       redirect_to users_path
     end
