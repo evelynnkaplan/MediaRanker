@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   resources :works
 
+  get "/users/current", to: "users#current_user", as: "current_user"
+
   resources :users, except: [:new, :create]
   get "/login", to: "users#login_form", as: "login"
   post "/login", to: "users#login"

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :find_user, only: [:show, :edit, :update, :destroy]
+  before_action :find_current, only: [:logout, :current_user]
 
   def index
     @users = User.all
@@ -32,8 +33,7 @@ class UsersController < ApplicationController
   end
 
   def logout
-    current = User.find_by(id: session[:user_id])
-    if current
+    if @current
       session[:user_id] = nil
       flash[:success] = "Successfully logged out #{current.username}"
     else
@@ -41,6 +41,13 @@ class UsersController < ApplicationController
     end
 
     redirect_to root_path
+  end
+
+  def current_user
+    if !@current
+      flash[:error] = "There is no user logged in."
+      redirect_to root_path
+    end
   end
 
   private
@@ -51,5 +58,9 @@ class UsersController < ApplicationController
 
   def find_user
     @user = User.find_by(id: params[:id])
+  end
+
+  def find_current
+    @current = User.find_by(id: session[:user_id])
   end
 end
