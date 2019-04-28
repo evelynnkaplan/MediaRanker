@@ -22,6 +22,13 @@
         <li><%= link_to "Add a new work", new_work_path %></li>
         <li><%= link_to "View all users", users_path %></li>
     </header>
+
+    <section class="flash">
+      <% flash.each do |name, message| %>
+        <div class="<%= name %>"><%= message %></div>
+      <% end %>
+    </section>
+
     <%= yield %>
   </body>
 </html>
