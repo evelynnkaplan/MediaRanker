@@ -1,42 +1,51 @@
+<body>
 
-<% highlight = Work.highlight %>
-<h2>Media Spotlight: <%= link_to "#{highlight.title}", work_path(highlight.id) %> by <%= highlight.creator %></h2>
+  <header>
+    <% highlight = Work.highlight %>
+    <h2>Media Spotlight: <%= link_to "#{highlight.title}", work_path(highlight.id) %> by <%= highlight.creator %></h2>
+  </header>
 
-<% top_movies_list = Work.top_movies %>
-<% unless top_movies_list == [] %>
-  <section>
-    <h3> Top Movies </h3>
-  </section>
+  <main>
+  
+    <% top_movies_list = Work.top_movies %>
+    <% unless top_movies_list == [] %>
+      <section>
+        <h3> Top Movies </h3>
+      </section>
 
-  <ul>
-  <% top_movies_list.each do |movie| %>
-    <li><%= link_to "#{movie.title}", work_path(movie.id) %> by <%= movie.creator %></li>
-  <% end %>
-  </ul>
-<% end%>
+      <ul>
+      <% top_movies_list.each do |movie| %>
+        <li><%= link_to "#{movie.title}", work_path(movie.id) %> by <%= movie.creator %></li>
+      <% end %>
+      </ul>
+    <% end%>
 
-<% top_books_list = Work.top_books %>
-<% unless top_books_list == [] %>
-  <section>
-    <h3> Top Books </h3>
-  </section>
+    <% top_books_list = Work.top_books %>
+    <% unless top_books_list == [] %>
+      <section>
+        <h3> Top Books </h3>
+      </section>
 
-  <ul>
-  <% top_books_list.each do |book| %>
-    <li><%= link_to "#{book.title}", work_path(book.id) %> by <%= book.creator %></li>
-  <% end %>
-  </ul>
-<% end %>
+      <ul>
+      <% top_books_list.each do |book| %>
+        <li><%= link_to "#{book.title}", work_path(book.id) %> by <%= book.creator %></li>
+      <% end %>
+      </ul>
+    <% end %>
 
-<% top_albums_list = Work.top_albums %>
-<% unless top_albums_list == [] %>
-  <section>
-    <h3> Top Albums </h3>
-  </section>
+    <% top_albums_list = Work.top_albums %>
+    <% unless top_albums_list == [] %>
+      <section>
+        <h3> Top Albums </h3>
+      </section>
 
-  <ul>
-  <% top_albums_list.each do |album| %>
-    <li><%= link_to "#{album.title}", work_path(album.id) %> by <%= album.creator %></li>
-  <% end %>
-  </ul>
-<% end %>
+      <ul>
+      <% top_albums_list.each do |album| %>
+        <li><%= link_to "#{album.title}", work_path(album.id) %> by <%= album.creator %></li>
+      <% end %>
+      </ul>
+    <% end %>
+
+  </main>
+
+</body>
