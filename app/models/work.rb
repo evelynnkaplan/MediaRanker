@@ -7,7 +7,7 @@ class Work < ApplicationRecord
   end
 
   def self.highlight
-    works = Work.all 
+    works = Work.all
     return works.sample
   end
 
@@ -51,5 +51,10 @@ class Work < ApplicationRecord
       end
     end
     return top_albums_list
+  end
+
+  def add_vote(vote)
+    new_vote = Vote.find_by(id: vote.id)
+    self.votes << new_vote
   end
 end

@@ -4,5 +4,6 @@
 <p><%= @work.description %></p>
 
 <%= button_to "Back to Media Ranks", root_path, method: "get" %>
-<%= button_to "Edit #{@work.title}", edit_work_path(@work.id), method: "get" %>
-<%= button_to "Delete #{@work.title}", work_path(@work.id), method: "delete" %>
+<%= button_to "Edit", edit_work_path(@work.id), method: "get" %>
+<%= button_to "Upvote", vote_work_path(@work.id), method: "post" %>
+<%= button_to "Delete", work_path(@work.id), method: "delete" %>
