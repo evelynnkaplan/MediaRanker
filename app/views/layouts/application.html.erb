@@ -24,7 +24,7 @@
         <% if !session[:user_id] %>
           <li><%= link_to "Login", login_path %>
         <% else %>
-          <li><%= link_to "Logout", logout_path %>
+          <li><%= link_to "Logout", logout_path, method: :post %>
         <% end %>
     </header>
 
