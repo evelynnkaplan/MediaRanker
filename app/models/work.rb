@@ -28,4 +28,9 @@ class Work < ApplicationRecord
   def vote_count
     return self.votes.count
   end
+
+  def self.category_all(category)
+    all = Work.where(category: category)
+    return all
+  end
 end
