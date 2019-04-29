@@ -11,9 +11,8 @@
   </header>
 
   <main>
-  
-    <% categories = Work.categories %>
-    <% categories.each do |category|%>
+
+    <% @categories.each do |category|%>
       <% top_list = Work.top_works(category) %>
       <% unless top_list == [] %>
         
