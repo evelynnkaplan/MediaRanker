@@ -20,11 +20,6 @@ class Work < ApplicationRecord
     end
   end
 
-  def add_vote(vote)
-    new_vote = Vote.find_by(id: vote.id)
-    self.votes << new_vote
-  end
-
   def vote_count
     return self.votes.count
   end

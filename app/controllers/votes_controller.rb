@@ -6,8 +6,6 @@ class VotesController < ApplicationController
     if @user && !@user.already_voted?(work)
       vote = Vote.create!(user: @user, work: work)
       if vote
-        work.add_vote(vote)
-        @user.add_vote(vote)
         flash[:success] = "Successfully upvoted!"
         redirect_to work_path(work)
       else
