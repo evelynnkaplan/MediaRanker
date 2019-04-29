@@ -11,7 +11,7 @@ class VotesController < ApplicationController
         flash[:success] = "Successfully upvoted!"
         redirect_to work_path(work)
       else
-        flash[:error] = "Error saving the vote."
+        flash[:error] = "Error saving the vote: #{vote.errors.messages}"
         redirect_to work_path(work)
       end
     elsif @user && @user.already_voted?(work)
