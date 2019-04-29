@@ -63,4 +63,5 @@ class UsersController < ApplicationController
   def find_current
     @current = User.find_by(id: session[:user_id])
   end
+
 end

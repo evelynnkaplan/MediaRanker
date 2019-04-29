@@ -6,4 +6,8 @@ class User < ApplicationRecord
     new_vote = Vote.find_by(id: vote.id)
     self.votes << new_vote
   end
+
+  def already_voted?(work)
+    return self.works.include?(work)
+  end
 end
