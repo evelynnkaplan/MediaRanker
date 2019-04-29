@@ -7,43 +7,22 @@
 
   <main>
   
-    <% top_movies_list = Work.top_works("movie") %>
-    <% unless top_movies_list == [] %>
-      <section>
-        <h3> Top Movies </h3>
-      </section>
+    <% categories = Work.categories %>
+    <% categories.each do |category|%>
+      <% top_list = Work.top_works(category) %>
+      <% unless top_list == [] %>
+        
+        <section>
+          <h3> Top <%= category.capitalize %>s </h3>
+        </section>
 
-      <ul>
-      <% top_movies_list.each do |movie| %>
-        <li><%= link_to "#{movie.title}", work_path(movie.id) %> by <%= movie.creator %></li>
+        <ul>
+        <% top_list.each do |work| %>
+          <li><%= link_to "#{work.title}", work_path(work.id) %> by <%= work.creator %></li>
+        <% end %>
+        </ul>
+        
       <% end %>
-      </ul>
-    <% end%>
-
-    <% top_books_list = Work.top_works("book") %>
-    <% unless top_books_list == [] %>
-      <section>
-        <h3> Top Books </h3>
-      </section>
-
-      <ul>
-      <% top_books_list.each do |book| %>
-        <li><%= link_to "#{book.title}", work_path(book.id) %> by <%= book.creator %></li>
-      <% end %>
-      </ul>
-    <% end %>
-
-    <% top_albums_list = Work.top_works("album") %>
-    <% unless top_albums_list == [] %>
-      <section>
-        <h3> Top Albums </h3>
-      </section>
-
-      <ul>
-      <% top_albums_list.each do |album| %>
-        <li><%= link_to "#{album.title}", work_path(album.id) %> by <%= album.creator %></li>
-      <% end %>
-      </ul>
     <% end %>
 
   </main>
