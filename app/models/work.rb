@@ -8,49 +8,14 @@ class Work < ApplicationRecord
 
   def self.highlight
     works = Work.all
-    return works.sample
+    works.max_by { |work| work.votes.count }
   end
 
-  def self.top_movies
-    top_movies_list = []
-    all_movies = Work.where(category: "movie")
-    unless all_movies == []
-      5.times do
-        movie = all_movies.sample
-        if !top_movies_list.include?(movie)
-          top_movies_list << movie
-        end
-      end
+  def self.top_works(category)
+    all_works = Work.where(category: category)
+    unless all_works == []
+      return all_works.max_by(5) { |work| work.votes.count }
     end
-    return top_movies_list
-  end
-
-  def self.top_books
-    top_books_list = []
-    all_books = Work.where(category: "book")
-    unless all_books == []
-      5.times do
-        book = all_books.sample
-        if !top_books_list.include?(book)
-          top_books_list << book
-        end
-      end
-    end
-    return top_books_list
-  end
-
-  def self.top_albums
-    top_albums_list = []
-    all_albums = Work.where(category: "album")
-    unless all_albums == []
-      5.times do
-        album = all_albums.sample
-        if !top_albums_list.include?(album)
-          top_albums_list << album
-        end
-      end
-    end
-    return top_albums_list
   end
 
   def add_vote(vote)

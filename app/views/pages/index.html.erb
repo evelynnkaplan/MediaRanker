@@ -7,7 +7,7 @@
 
   <main>
   
-    <% top_movies_list = Work.top_movies %>
+    <% top_movies_list = Work.top_works("movie") %>
     <% unless top_movies_list == [] %>
       <section>
         <h3> Top Movies </h3>
@@ -20,7 +20,7 @@
       </ul>
     <% end%>
 
-    <% top_books_list = Work.top_books %>
+    <% top_books_list = Work.top_works("book") %>
     <% unless top_books_list == [] %>
       <section>
         <h3> Top Books </h3>
@@ -33,7 +33,7 @@
       </ul>
     <% end %>
 
-    <% top_albums_list = Work.top_albums %>
+    <% top_albums_list = Work.top_works("album") %>
     <% unless top_albums_list == [] %>
       <section>
         <h3> Top Albums </h3>
