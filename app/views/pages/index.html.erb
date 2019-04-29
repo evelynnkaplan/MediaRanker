@@ -2,7 +2,9 @@
 
   <header>
     <% highlight = Work.highlight %>
-    <h2>Media Spotlight: <%= link_to "#{highlight.title}", work_path(highlight.id) %> by <%= highlight.creator %></h2>
+    <% unless !highlight %>
+      <h2>Media Spotlight: <%= link_to "#{highlight.title}", work_path(highlight.id) %> by <%= highlight.creator %></h2>
+    <% end %>
   </header>
 
   <main>
