@@ -6,55 +6,30 @@
     <% end %>
   </section>
 
-  <h3>Albums</h3>
-  <table>
-    <tr>
-      <th>Title</th>
-      <th>Created By</th>
-      <th>Published</th>
-    </tr>
-    <% @albums.each do |work| %>
-      <tr>
-        <td><%= link_to "#{work.title}", work_path(work.id) %></td>
-        <td><%= work.creator %></td>
-        <td><%= work.pub_year %></td>
-      </tr>
+  <% @categories.each do |category| %>
+    <% all = Work.category_all(category) %>
+    <% unless all == [] %>
+      <h3><%= category.capitalize %></h3>
+      <table>
+        <tr>
+          <th>Votes</th>
+          <th>Title</th>
+          <th>Created By</th>
+          <th>Published</th>
+          <th>Upvote</th>
+        </tr>
+        <% all.each do |work| %>
+          <tr>
+            <td><%= work.vote_count %>
+            <td><%= link_to "#{work.title}", work_path(work.id) %></td>
+            <td><%= work.creator %></td>
+            <td><%= work.pub_year %></td>
+            <td><%= button_to "Upvote", vote_work_path(work.id), method: "post" %>
+          </tr>
+        <% end %>
+      </table>
     <% end %>
-  </table>
-
-  <h3>Books</h3>
-  <table>
-    <tr>
-      <th>Title</th>
-      <th>Created By</th>
-      <th>Published</th>
-    </tr>
-    <% @books.each do |work| %>
-      <tr>
-        <td><%= link_to "#{work.title}", work_path(work.id) %></td>
-        <td><%= work.creator %></td>
-        <td><%= work.pub_year %></td>
-      </tr>
-    <% end %>
-  </table>
-
-  <h3>Movies</h3>
-  <table>
-    <tr>
-      <th>Title</th>
-      <th>Created By</th>
-      <th>Published</th>
-    </tr>
-    <% @movies.each do |work| %>
-      <tr>
-        <td><%= link_to "#{work.title}", work_path(work.id) %></td>
-        <td><%= work.creator %></td>
-        <td><%= work.pub_year %></td>
-      </tr>
-    <% end %>
-  </table>
-
-</body>
+  <% end %>
 
 <%= button_to "View top media", root_path, method: "get" %>
 <%= button_to "Add a new work", new_work_path, method: "get" %>
