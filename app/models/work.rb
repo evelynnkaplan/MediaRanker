@@ -33,4 +33,8 @@ class Work < ApplicationRecord
     all = Work.where(category: category)
     return all
   end
+
+  def created_date
+    return self.created_at.strftime("%B %d, %Y")
+  end
 end
