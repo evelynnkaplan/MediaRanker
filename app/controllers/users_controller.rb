@@ -21,10 +21,15 @@ class UsersController < ApplicationController
     username = params[:user][:username]
     user = User.find_by(username: username)
     if !user
-      user = User.create!(username: username)
-      session[:user_id] = user.id
-      flash[:success] = "Successfully created new user #{username} with ID #{user.id}"
-    else
+      user = User.new(username: username)
+      success = user.save
+      if success
+        session[:user_id] = user.id
+        flash[:success] = "Successfully created new user #{username} with ID #{user.id}"
+      else
+        flash[:error] = "There was an error saving a user: #{user.errors.messages}"
+      end
+    elsif user
       session[:user_id] = user.id
       flash[:success] = "Successfully logged in as existing user #{username}"
     end
@@ -43,13 +48,6 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
-  def current_user
-    if !@current
-      flash[:error] = "There is no user logged in."
-      redirect_to root_path
-    end
-  end
-
   private
 
   def user_params
@@ -63,5 +61,4 @@ class UsersController < ApplicationController
   def find_current
     @current = User.find_by(id: session[:user_id])
   end
-
 end
