@@ -2,13 +2,7 @@ require "test_helper"
 
 describe VotesController do
   before do
-    @gump = Work.create!(
-      category: "movie",
-      title: "Forrest Gump",
-      creator: "Tom Hanks",
-      pub_year: 1981,
-      description: "Why is this movie soooo sad?",
-    )
+    @gump = works(:gump)
   end
 
   describe "add_vote" do
