@@ -3,7 +3,6 @@ class WorksController < ApplicationController
 
   def index
     @categories = Work.categories
-  
   end
 
   def show
