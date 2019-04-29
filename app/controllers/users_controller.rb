@@ -35,7 +35,7 @@ class UsersController < ApplicationController
   def logout
     if @current
       session[:user_id] = nil
-      flash[:success] = "Successfully logged out #{current.username}"
+      flash[:success] = "Successfully logged out #{@current.username}"
     else
       flash[:error] = "There was no logged in user to log out."
     end
