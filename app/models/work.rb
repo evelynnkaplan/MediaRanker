@@ -24,4 +24,8 @@ class Work < ApplicationRecord
     new_vote = Vote.find_by(id: vote.id)
     self.votes << new_vote
   end
+
+  def vote_count
+    return self.votes.count
+  end
 end

@@ -4,6 +4,9 @@
     <% highlight = Work.highlight %>
     <% unless !highlight %>
       <h2>Media Spotlight: <%= link_to "#{highlight.title}", work_path(highlight.id) %> by <%= highlight.creator %></h2>
+      <p>
+        <%= highlight.vote_count %> votes - <%= highlight.description %>
+      </p>
     <% end %>
   </header>
 
