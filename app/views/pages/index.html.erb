@@ -23,7 +23,10 @@
 
         <ul>
         <% top_list.each do |work| %>
-          <li><%= link_to "#{work.title}", work_path(work.id) %> by <%= work.creator %></li>
+          <li>
+            <h4><%= link_to "#{work.title}", work_path(work.id) %> by <%= work.creator %></h4>
+            <p><%= work.vote_count %> votes</p>
+          </li>
         <% end %>
         </ul>
         
