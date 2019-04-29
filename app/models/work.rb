@@ -3,7 +3,7 @@ class Work < ApplicationRecord
   has_many :users, through: :votes
 
   def self.categories
-    return ["album", "book", "movie"]
+    return ["movie", "book", "album"]
   end
 
   def self.highlight
@@ -15,6 +15,8 @@ class Work < ApplicationRecord
     all_works = Work.where(category: category)
     unless all_works == []
       return all_works.max_by(5) { |work| work.votes.count }
+    else
+      return []
     end
   end
 
