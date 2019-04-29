@@ -14,7 +14,7 @@ class Work < ApplicationRecord
   def self.top_works(category)
     all_works = Work.where(category: category)
     unless all_works == []
-      return all_works.max_by(5) { |work| work.votes.count }
+      return all_works.max_by(10) { |work| work.votes.count }
     else
       return []
     end
