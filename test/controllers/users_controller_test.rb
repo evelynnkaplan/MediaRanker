@@ -38,11 +38,12 @@ describe UsersController do
 
   describe "login" do
     it "can login a new user" do
-      perform_login
+      user = perform_login
 
       expect(session[:user_id]).must_equal user.id
 
-      must_respond_with :success
+      must_respond_with :redirect
+      must_redirect_to root_path
     end
   end
 end
