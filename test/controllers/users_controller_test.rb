@@ -37,10 +37,25 @@ describe UsersController do
   end
 
   describe "login" do
-    it "can login a new user" do
+    it "can login a user" do
       user = perform_login
 
       expect(session[:user_id]).must_equal user.id
+
+      must_respond_with :redirect
+      must_redirect_to root_path
+    end
+  end
+
+  describe "logout" do
+    it "logs out a user who was logged in" do
+      user = perform_login
+
+      expect(session[:user_id]).must_equal user.id
+
+      post logout_path
+
+      expect(session[:user_id]).must_equal nil
 
       must_respond_with :redirect
       must_redirect_to root_path
