@@ -4,11 +4,24 @@ require "pry"
 describe Work do
   let(:work) { Work.new }
   let(:gump) { works(:gump) }
+  let(:tree) { works(:tree) }
   let(:user_one) { users(:one) }
   let(:user_two) { users(:two) }
 
   it "must be valid" do
     value(work).must_be :valid?
+  end
+
+  describe "relations" do
+    it "has votes" do
+      expect(tree.votes.count).must_equal 2
+      expect(tree.votes.include?(votes(:one))).must_equal true
+    end
+
+    it "can access users who have its votes" do
+      expect(tree.users.count).must_equal 2
+      expect(tree.users.include?(user_one)).must_equal true
+    end
   end
 
   describe "categories" do
@@ -23,15 +36,17 @@ describe Work do
 
   describe "highlight" do
     it "returns the work with the most votes" do
-      Vote.create!(work: gump, user: user_one)
+      Vote.create!(work: tree, user: user_one)
       Vote.create!(work: gump, user: user_two)
 
       highlight = Work.highlight
 
-      expect(highlight.title).must_equal "Forrest Gump"
+      expect(highlight.title).must_equal "A Tree Grows in Brooklyn"
     end
 
     it "returns the first work if vote counts are equal" do
+      Vote.create!(work: gump, user: user_one)
+      Vote.create!(work: gump, user: user_two)
       first = Work.first
       highlight = Work.highlight
 
@@ -88,7 +103,7 @@ describe Work do
 
   describe "category_all" do
     it "can return all the works in a category" do
-      expect(Work.category_all("movie").count).must_equal 2
+      expect(Work.category_all("movie").count).must_equal 1
     end
 
     it "returns an empty array if there are no works in that category" do
