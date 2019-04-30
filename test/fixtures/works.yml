@@ -8,7 +8,7 @@ gump:
   description: "Why is this movie soooo sad?"
 
 tree:
-  category: "book"
+  category: "movie"
   title: "A Tree Grows in Brooklyn"
   creator: "Betty Smith"
   pub_year: 1956
