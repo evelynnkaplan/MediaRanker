@@ -12,7 +12,7 @@ describe VotesController do
       post vote_work_path(@gump.id)
 
       expect(@gump.votes.count).must_equal 1
-      expect(user.votes.count).must_equal 1
+      expect(user.votes.count).must_equal 2
 
       must_respond_with :redirect
       must_redirect_to work_path(@gump)
@@ -24,12 +24,12 @@ describe VotesController do
       post vote_work_path(@gump.id)
 
       expect(@gump.votes.count).must_equal 1
-      expect(user.votes.count).must_equal 1
+      expect(user.votes.count).must_equal 2
 
       expect { post vote_work_path(@gump.id) }.wont_change "#{@gump.votes.count}"
 
       expect(@gump.votes.count).must_equal 1
-      expect(user.votes.count).must_equal 1
+      expect(user.votes.count).must_equal 2
 
       must_respond_with :redirect
       must_redirect_to work_path(@gump.id)
