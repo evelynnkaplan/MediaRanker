@@ -1,7 +1,7 @@
 require "test_helper"
 
 describe Vote do
-  let (:vote) { Vote.new(user_id: users(:one).id, work_id: works(:gump).id) }
+  let (:vote) { Vote.new(user: users(:one), work: works(:gump)) }
 
   describe "validations" do
     it "is valid when it's associated with a work and a user" do
@@ -21,6 +21,19 @@ describe Vote do
     end
   end
 
+  describe "relations" do
+    it "belongs to a work" do
+      vote.save
+      expect(works(:gump).votes.count).must_equal 1
+      expect(works(:gump).votes.include?(vote)).must_equal true
+    end
+
+    it "belongs to a user" do
+      expect(users(:two).votes.count).must_equal 1
+      expect(users(:two).votes.include?(votes(:two))).must_equal true
+    end
+  end
+
   describe "voter_name" do
     it "returns the username of the user associated with the vote" do
       expect(vote.voter_name).must_equal users(:one).username
@@ -36,8 +49,8 @@ describe Vote do
 
   describe "created_date" do
     it "must return a formatted string of the date" do
-      vote.save 
-      
+      vote.save
+
       expect(vote.created_date).must_equal "#{vote.created_at.strftime("%B %d, %Y")}"
     end
   end
