@@ -3,9 +3,22 @@ require "test_helper"
 describe User do
   let(:user) { User.new }
   let(:gump) { works(:gump) }
+  let(:user_one) { users(:one) }
 
   it "must be valid" do
     value(user).must_be :valid?
+  end
+
+  describe "relations" do
+    it "has votes" do
+      expect(user_one.votes.count).must_equal 1
+      expect(user_one.votes.include?(votes(:one))).must_equal true
+    end
+
+    it "can access works who have its votes" do
+      expect(user_one.works.count).must_equal 1
+      expect(user_one.works.include?(works(:tree))).must_equal true
+    end
   end
 
   describe "already_voted?" do
