@@ -25,7 +25,7 @@ class ActiveSupport::TestCase
   def perform_login(user: nil)
     user ||= User.first
 
-    user = User.first
+    user = users(:one)
     login_data = {
       user: {
         username: user.username,
