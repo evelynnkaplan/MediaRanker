@@ -58,7 +58,7 @@ describe UsersController do
       assert_nil(session[:user_id])
 
       must_respond_with :redirect
-      must_redirect_to root_path
+      must_redirect_to works_path
     end
   end
 end
